@@ -4,3 +4,4 @@ What is YAML file ?
          In applicaion.yaml        : app:
                                        name: Journal_app
   -> The Precedence is given to the application.properties file in case of same property is written in both Configuration file.
+  -> Commnd Line Arguments > application.properties > application.yml
