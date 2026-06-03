@@ -2,7 +2,7 @@
 # common configurations between all profiles are written here in default one.
 spring:
   profiles:
-    active: default
+    active: dev
 
 server:
   port: 8083

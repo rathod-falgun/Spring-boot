@@ -1,6 +1,5 @@
 package com.example.journal_app.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,14 +28,15 @@ public class PublicController {
     }
 
     @PostMapping("/create-user")
-    public void createUser(@RequestBody User user) {
+    public User createUser(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(user.getRoles());
         userService.saveEntry(user);
+        return user;
     }
-    
-    @GetMapping     
-    public String GreetingMessage(){
-            return "<h2>Welcome to My Spring Boot Learning</h2/>";
-        }
+
+    @GetMapping
+    public String GreetingMessage() {
+        return "<h2>Welcome to My Spring Boot Learning</h2/>";
+    }
 }

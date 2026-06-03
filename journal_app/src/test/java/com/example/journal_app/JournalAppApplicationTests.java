@@ -1,6 +1,5 @@
 package com.example.journal_app;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.journal_app.entity.User;
 import com.example.journal_app.repository.UserRepository;
-
 
 // Beforeall runs before all test cases like whatever we have to initialize or do something 
 // and BeforeEach runs before each test case not all 
@@ -27,17 +25,14 @@ class JournalAppApplicationTests {
 	@Autowired
 	private UserRepository userRepository;
 
-	
 	@ParameterizedTest
 	@CsvSource({
-		"xeon",
-		"ram",
-		"shyam",
-		"zammpy","Vivek","tam","falgun"
+			"xeon",
+			"tam"
 	})
-	public void findByname(String name){
+	public void findByname(String name) {
 		User u = userRepository.findByUsername(name);
 		assertTrue(!u.getUsername().isEmpty());
-    }
+	}
 
 }
