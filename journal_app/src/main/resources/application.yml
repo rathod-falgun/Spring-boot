@@ -1,15 +1,8 @@
+# To activate a diffrent profile
+# common configurations between all profiles are written here in default one.
 spring:
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: test
-      auto-index-creation: true
+  profiles:
+    active: default
 
 server:
-  port: 8081
-  servlet:
-    context-path: /journal
-
-
-
+  port: 8083

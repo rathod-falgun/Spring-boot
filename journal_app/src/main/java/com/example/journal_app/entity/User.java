@@ -6,7 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.mongodb.lang.NonNull;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,9 @@ import org.bson.types.ObjectId;
 
 @Document(collection = "users")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class User {
     @org.springframework.data.annotation.Id
     private ObjectId Id;
@@ -27,7 +33,7 @@ public class User {
 
     private List<String> roles;
 
-    @DBRef // make link between jounalentries and user 
-    private List<JournalEntry> journalEntry  = new ArrayList<>();
+    @DBRef // make link between jounalentries and user
+    private List<JournalEntry> journalEntry = new ArrayList<>();
 
 }

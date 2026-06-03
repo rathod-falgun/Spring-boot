@@ -34,4 +34,9 @@ public class PublicController {
         user.setRoles(user.getRoles());
         userService.saveEntry(user);
     }
+    
+    @GetMapping     
+    public String GreetingMessage(){
+            return "<h2>Welcome to My Spring Boot Learning</h2/>";
+        }
 }
