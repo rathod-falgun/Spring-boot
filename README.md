@@ -121,3 +121,6 @@ verify(userService, times(2))
 
 
 **Mocking = Creating fake objects (Test Doubles) to isolate code, control behavior, and make unit tests fast and reliable.**
+
+
+##profile annotation : it is used when we want to make some classes to restriction or changes the profile of some classes like 5 files have to access when there is a dev. profile is activate so we can use @Profile("dev") on the required classes
