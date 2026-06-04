@@ -14,10 +14,14 @@ import org.springframework.stereotype.Component;
 import com.example.journal_app.entity.User;
 import com.example.journal_app.repository.UserRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j  // Which injects the instance of the Logger during runtime that name is log
 public class UserService {
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @Autowired
     private UserRepository userRepository;
 
