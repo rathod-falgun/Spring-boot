@@ -122,5 +122,85 @@ verify(userService, times(2))
 
 **Mocking = Creating fake objects (Test Doubles) to isolate code, control behavior, and make unit tests fast and reliable.**
 
+# Spring Boot Logging — SLF4J & Logback
 
-##profile annotation : it is used when we want to make some classes to restriction or changes the profile of some classes like 5 files have to access when there is a dev. profile is activate so we can use @Profile("dev") on the required classes
+## Definition
+Spring Boot logging records runtime application events using **SLF4J** (API) 
+and **Logback** (implementation), auto-configured with zero setup.
+
+## Architecture
+Your Code → SLF4J API → Logback → Appenders (Console / File / External)
+
+## Key Concepts
+| Concept | Role |
+|---------|------|
+| SLF4J | Logging facade/API — decouples code from implementation |
+| Logback | Default implementation — formats and writes logs |
+| Log Level | TRACE < DEBUG < INFO < WARN < ERROR |
+| Appender | Output destination (Console, File, Rolling, External) |
+| MDC | Thread-local context (attach requestId, userId) |
+
+## Quick Setup (application.properties)
+```properties
+logging.level.root=WARN
+logging.level.com.myapp=DEBUG
+logging.file.name=logs/app.log
+logging.pattern.console=%d{HH:mm:ss} %-5level [%logger{20}] - %msg%n
+```
+
+## Usage
+```java
+private static final Logger log = LoggerFactory.getLogger(MyService.class);
+log.info("Processing order: {}", orderId);
+log.error("Payment failed for order: {}", orderId, exception);
+```
+
+## Interview Notes
+- SLF4J is an API. Logback is the implementation. Spring Boot wires them.
+- Use `logback-spring.xml` (not `logback.xml`) to support Spring profiles.
+- Never use string concatenation in log args — use `{}` placeholders.
+- To switch to Log4j2: exclude `spring-boot-starter-logging`, add `spring-boot-starter-log4j2`.
+- MDC for request tracing: `MDC.put("requestId", uuid)`.
+
+## Cheat Sheet
+- Get logger: `LoggerFactory.getLogger(MyClass.class)`
+- Levels: TRACE < DEBUG < INFO < WARN < ERROR
+- Log with context: `log.info("User {} logged in", userId)`
+- Config file: `logback-spring.xml`
+- Rolling logs: `RollingFileAppender` + `TimeBasedRollingPolicy`
+
+## locback.xml file Example: 
+-> if spring find this file in project directory so it will use this file as configuration for the logging as first choice.
+<!-- <configuration>
+
+    <appender name = "myConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss} %-5level [%logger{20}] - %msg%n
+            </pattern> 
+        </encoder>
+    </appender>
+
+    <appender name = "myFileAppender" class="ch.qos.logback.core.FileAppender">
+    <encoder>
+            <pattern>
+                %d{HH:mm:ss} %-5level [%logger{20}] - %msg%n
+            </pattern> 
+        </encoder>
+        <file>
+            journalApp.log
+        </file>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="myConsoleAppender"/>
+        <appender-ref ref="myFileAppender"/>
+    </root>
+
+</configuration> -->
+
+
+## profile annotation : 
+it is used when we want to make some classes to restriction or changes the profile of some classes like 5 files have to access when there is a dev. profile is activate so we can use @Profile("dev") on the required classes
+
+
