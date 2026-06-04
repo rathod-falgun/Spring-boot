@@ -169,6 +169,36 @@ log.error("Payment failed for order: {}", orderId, exception);
 - Config file: `logback-spring.xml`
 - Rolling logs: `RollingFileAppender` + `TimeBasedRollingPolicy`
 
+## locback.xml file Example: 
+-> if spring find this file in project directory so it will use this file as configuration for the logging as first choice.
+<!-- <configuration>
+
+    <appender name = "myConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss} %-5level [%logger{20}] - %msg%n
+            </pattern> 
+        </encoder>
+    </appender>
+
+    <appender name = "myFileAppender" class="ch.qos.logback.core.FileAppender">
+    <encoder>
+            <pattern>
+                %d{HH:mm:ss} %-5level [%logger{20}] - %msg%n
+            </pattern> 
+        </encoder>
+        <file>
+            journalApp.log
+        </file>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="myConsoleAppender"/>
+        <appender-ref ref="myFileAppender"/>
+    </root>
+
+</configuration> -->
+
 
 ## profile annotation : 
 it is used when we want to make some classes to restriction or changes the profile of some classes like 5 files have to access when there is a dev. profile is activate so we can use @Profile("dev") on the required classes
