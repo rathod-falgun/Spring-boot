@@ -1,6 +1,5 @@
 package com.example.journal_app.config;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,25 +24,25 @@ public class Security {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/journal/** , /user/**").authenticated()
-                    .requestMatchers("/admin/**").hasRole("ADMIN")
-                    .anyRequest().permitAll())
-                .httpBasic(Customizer.withDefaults());  // Enable Basic Authentication
+                        .requestMatchers("/journal/** , /user/** , /user").authenticated()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .anyRequest().permitAll())
+                .httpBasic(Customizer.withDefaults()); // Enable Basic Authentication
         return http.build();
     }
 
-   @Autowired
-   private UserDetailServiceImp UserDetailService;
-
-   @Bean
-   public AuthenticationProvider authenticationprovider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(UserDetailService);
-        provider.setPasswordEncoder(passwordEncoder());
-    return provider;
-   }
+    @Autowired
+    private UserDetailServiceImp UserDetailService;
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public AuthenticationProvider authenticationprovider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(UserDetailService);
+        provider.setPasswordEncoder(passwordEncoder());
+        return provider;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
