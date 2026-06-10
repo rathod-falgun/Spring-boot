@@ -33,6 +33,10 @@ public class User {
 
     private List<String> roles;
 
+    private String email;
+
+    private boolean sentimentAnalysis;
+
     @DBRef // make link between jounalentries and user
     private List<JournalEntry> journalEntry = new ArrayList<>();
 

@@ -1,3 +1,4 @@
+package com.example.journal_app.serviceTest;
 
 import static org.bson.assertions.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;

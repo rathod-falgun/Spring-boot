@@ -17,7 +17,7 @@ import com.example.journal_app.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
-@Slf4j  // Which injects the instance of the Logger during runtime that name is log
+@Slf4j // Which injects the instance of the Logger during runtime that name is log
 public class UserService {
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -54,4 +54,5 @@ public class UserService {
         user.setRoles(Arrays.asList("USER", "ADMIN"));
         userRepository.save(user);
     }
+
 }
