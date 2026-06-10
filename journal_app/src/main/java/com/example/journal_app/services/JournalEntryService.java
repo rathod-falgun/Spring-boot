@@ -7,14 +7,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.example.journal_app.entity.JournalEntry;
 import com.example.journal_app.entity.User;
 import com.example.journal_app.repository.JournalEntryRepository;
 
 //  controller calls --> service calls --> repository
-@Component
+@Service
 public class JournalEntryService {
 
     @Autowired
