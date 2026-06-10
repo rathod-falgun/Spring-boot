@@ -199,8 +199,10 @@ log.error("Payment failed for order: {}", orderId, exception);
 
 </configuration> -->
 
-
 ## profile annotation : 
 it is used when we want to make some classes to restriction or changes the profile of some classes like 5 files have to access when there is a dev. profile is activate so we can use @Profile("dev") on the required classes
+
+# PostConstruct
+- In our Application there are certain things needs to be hided like API_KEY so there are ways to make that : 1st is put it into application.yml or properties file and 2nd way is to store into database but while applying the 2nd one , the DB call is increased in each load. so that is why we use Application cache and store it and use a POST CONSTRUCT annotation over the class (cache) method to make a call to api key or get it while bean is injecting to the class during runtime so now we have take it during bean injection ,directly.  
 
 
