@@ -8,4 +8,7 @@ import com.example.journal_app.entity.User;
 public interface UserRepository extends MongoRepository<User, ObjectId> {
 
     User findByUsername(String username);
+
+    void deleteByUsername(String username);
 }
+ 

@@ -54,7 +54,9 @@ public class UserEntryController {
     }
 
     @DeleteMapping("/{username}")
-    public void deleteByUser(@PathVariable String username) {
+    public ResponseEntity<String> deleteByUser(@PathVariable String username) {
+        userService.deleteUserByUserName(username);
+        return ResponseEntity.ok("User Deleted SuccessFully");
     }
 
     @GetMapping

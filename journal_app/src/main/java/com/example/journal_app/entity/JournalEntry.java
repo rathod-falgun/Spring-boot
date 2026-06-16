@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.example.journal_app.enums.Sentiment;
 import com.mongodb.lang.NonNull;
 
 import lombok.AllArgsConstructor;
@@ -16,7 +17,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class JournalEntry {
     @Id
     private String id;
@@ -24,4 +24,5 @@ public class JournalEntry {
     private String title;
     private String content;
     private LocalDate date;
+    private Sentiment sentiment;
 }

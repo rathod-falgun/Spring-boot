@@ -20,7 +20,6 @@ import org.bson.types.ObjectId;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class User {
     @org.springframework.data.annotation.Id
     private ObjectId Id;
