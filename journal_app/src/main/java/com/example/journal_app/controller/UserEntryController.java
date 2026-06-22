@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.journal_app.api.response.WeatherApiResponse;
 import com.example.journal_app.entity.User;
 import com.example.journal_app.services.UserService;
 import com.example.journal_app.services.WeatherService;
@@ -62,8 +63,12 @@ public class UserEntryController {
     @GetMapping
     public ResponseEntity<?> gretting() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return new ResponseEntity<>("hi" + authentication.getName() + " , Weather feels like"
-                + weatherService.getWeather("Mumbai").getCurrent().getTemperature(), HttpStatus.OK);
+        WeatherApiResponse weather = weatherService.getWeather("Rajkot");
+
+        String weatherInfo = weather.getCurrent().getTemperature() + " "+ weather.getOrigin();
+
+        String message = "hi " + authentication.getName() + " , Weather feels like " + weatherInfo;
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
 }

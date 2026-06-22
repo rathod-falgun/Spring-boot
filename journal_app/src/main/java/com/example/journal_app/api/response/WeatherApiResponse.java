@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class WeatherApiResponse {
     private Current current;
-
+    private String origin;
     @Getter
     @Setter
     public class Current {
@@ -22,7 +22,6 @@ public class WeatherApiResponse {
         private String observationTime;
         private int temperature;
         private List<String> weather_descriptions;
-
     }
 
 }

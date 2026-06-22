@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "Test",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-JournalApplication<journal_app>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
