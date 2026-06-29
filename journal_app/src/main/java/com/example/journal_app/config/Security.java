@@ -13,12 +13,17 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.example.journal_app.filter.JwtFilter;
 import com.example.journal_app.services.UserDetailServiceImp;
 
 @Configuration
 @EnableWebSecurity
 public class Security {
+
+    @Autowired
+    private JwtFilter jwtFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -28,8 +33,9 @@ public class Security {
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/journal/**").authenticated()
                         .requestMatchers("/user/**").authenticated()
-                        .anyRequest().permitAll())
-                .httpBasic(Customizer.withDefaults()); // Enable Basic Authentication
+                        .anyRequest().permitAll());
+                    http.addFilterBefore(jwtFilter,UsernamePasswordAuthenticationFilter.class);
+             //   .httpBasic(Customizer.withDefaults()); // Enable Basic Authentication
         return http.build();
     }
 

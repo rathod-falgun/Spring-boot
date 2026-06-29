@@ -29,7 +29,15 @@ public class UserService {
     private UserRepository userRepository;
 
     public void saveEntry(@NonNull User user) {
-        userRepository.save(user);
+        try {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setRoles(user.getRoles());
+            userRepository.save(user);
+            log.info("User Created Successfully");
+        } catch (Exception e) {
+            log.warn("YOU HAVE NOT MATCH THE REQUIREMENTS");
+        }
+
     }
 
     public List<User> getAll() {
@@ -58,7 +66,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void  deleteUserByUserName(String username) {
+    public void deleteUserByUserName(String username) {
         userRepository.deleteByUsername(username);
     }
 
